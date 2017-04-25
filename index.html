@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+    class APIRecent extends React.Component {
+      constructor(props){
+        super(props);
+        this.state={
+          loadingFailed:false,
+          }
+      }
+      componentDidMount(){
+        fetch(`https://fcctop100.herokuapp.com/api/fccusers/top/recent`)
+          .then(response =>{
+            if(!response.ok){
+            throw Error('Network Request Failed')
+          }
+          return response
+        })
+        .then(d=>d.json())
+        .then(d=>{
+          this.setState({
+            recentdata:d,
+          })
+        },()=>{
+          this.setState({
+            loadingFailed:true
+          })
+          })
+        }
+        render(){
+          if(this.state.requestFailed) return <p>Failed !</p>
+          if(!this.state.recentdata) return <p>Loading...</p>
+          console.log(this.state.recentdata[0].username)
+          return (
+            <div>
+            <Userlist
+            recentdata ={this.state.recentdata}/>
+            </div>
+          )
+        }
+      }
+
+      class Userlist extends React.Component {
+        constructor(props){
+          super(props);
+          this.state = {
+            array:[],
+          }
+        }
+        render(){
+
+            for(var i =0; i<this.props.recentdata.length; i++){
+            //  this.state.array.push(this.props.recentdata[i].username)
+              console.log(this.props.recentdata[i].username)
+            }
+
+
+              return(
+              <div>
+              <h2>hello</h2>
+              </div>
+            )
+          }
+        }
+
+
+      ReactDOM.render(<APIRecent/>,document.getElementById('root'));
