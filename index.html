@@ -54,11 +54,13 @@
         constructor(props){
           super(props);
           this.state = {
+            displayArr:array,
             array:[],
+            allTimeArr:[],
           }
         }
         handleClick=()=>{
-          console.log('hello')
+
         }
         render(){
 
@@ -81,7 +83,7 @@
               <th>Recent</th>
               <th onClick={this.handleClick}>All Time</th>
               </tr>
-              {this.state.array}
+              {this.state.displayArr}
               </tbody>
               </table>
               </div>
