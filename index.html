@@ -54,13 +54,17 @@
         constructor(props){
           super(props);
           this.state = {
-            displayArr:array,
             array:[],
-            allTimeArr:[],
+            reversed:false
+
           }
         }
         handleClick=()=>{
-
+          let Reverse = this.state.array.reverse()
+          console.log (Reverse)
+          this.setState({
+            array:this.state.array.reverse(),
+          })
         }
         render(){
 
@@ -80,10 +84,10 @@
               <tr>
               <th />
               <th>User</th>
-              <th>Recent</th>
-              <th onClick={this.handleClick}>All Time</th>
+              <th onClick={this.handleClick}>Recent</th>
+              <th >All Time</th>
               </tr>
-              {this.state.displayArr}
+              {this.state.array}
               </tbody>
               </table>
               </div>
