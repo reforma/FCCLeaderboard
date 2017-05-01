@@ -60,10 +60,8 @@
           }
         }
         handleClick=()=>{
-          let Reverse = this.state.array.reverse()
-          console.log (Reverse)
           this.setState({
-            array:this.state.array.reverse(),
+          reversed:!this.state.reversed,
           })
         }
         render(){
@@ -76,6 +74,10 @@
                                     <td>{this.props.recentdata[i].alltime}</td>
                                     </tr>)
             }
+          console.log( React.Children.toArray(this.state.children));
+
+
+
 
               return(
               <div>
